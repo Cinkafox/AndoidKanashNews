@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KanashNews.MainPage">
+
+    <StackLayout>
+        <Image Source="http://kanashen.ru/wp-content/uploads/2017/11/rec-top12.png" Aspect="AspectFill" />
+        <Label Text="Новости Канаша" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" FontFamily=""/>
+        <ScrollView x:Name="scroll">
+            <StackLayout>
+                <StackLayout BackgroundColor="CornflowerBlue" x:Name="News">
+
+                </StackLayout>
+                <Button Text="Загружить еще новости" Clicked="Button_Clicked" x:Name="btn"/>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+        
+
+</ContentPage>
