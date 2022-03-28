@@ -37,7 +37,7 @@ namespace KanashNews
             //append(prepare("О верных служителях Мельпомены", "http://kanashen.ru/wp-content/uploads/2022/03/u_Kuc9fKmwQ-1200x630.jpg"));
             //append(prepare("На старт вышли более 200 лыжников", "http://kanashen.ru/wp-content/uploads/2022/03/hd_004-cm44x3mx-1200x630.jpg"));
         }
-        public Boolean boole = true;
+        public Boolean boole = false;
         //Метод получает json с ссылки и сует в StackLayout
         public void GetAndpush(String url,Boolean clear)
         {

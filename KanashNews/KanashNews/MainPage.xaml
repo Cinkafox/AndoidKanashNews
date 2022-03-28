@@ -11,7 +11,7 @@
                 <StackLayout BackgroundColor="CornflowerBlue" x:Name="News">
 
                 </StackLayout>
-                <Button Text="Загружить еще новости" Clicked="Button_Clicked" x:Name="btn"/>
+                <Button Text="Пожалуйста,подождите" Clicked="Button_Clicked" x:Name="btn"/>
             </StackLayout>
         </ScrollView>
     </StackLayout>
