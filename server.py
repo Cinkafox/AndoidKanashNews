@@ -30,7 +30,10 @@ def getNews(page) -> string:
     for new in news:
         href = "https://gkan.cap.ru" + new.find("a")['href']
         lb = gethtml(href)
-        img = lb.find("img", class_="map_img")['src']
+        tm2 = lb.find("img", class_="map_img")
+        img = "https://fs01.cap.ru/www18/gkan/city_picture.png"
+        if tm2 is not None:
+            img = tm2['src']
         txt = lb.find("div", class_="news_text")
 
         parsednews.append({"date": new.find("span").text, "label": new.find("a").text, "url": href, "img": img,"text": txt.getText()})
