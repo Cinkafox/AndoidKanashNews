@@ -1,4 +1,5 @@
 import json
+import os
 import string
 
 from bs4 import BeautifulSoup
@@ -7,7 +8,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
 # Некоторые функции
-
+parsedthink = {}
 
 def gethtml(url) -> BeautifulSoup:
     HEADERS = {
@@ -46,7 +47,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(getNews(url[2]).encode())
+            if parsedthink.get(url[2]) is None:
+                parsedthink[url[2]] = getNews(url[2])
+            self.wfile.write(parsedthink[url[2]].encode())
         else:
             self.send_response(200)
             self.end_headers()
@@ -54,6 +57,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    httpd = HTTPServer(('', 80), SimpleHTTPRequestHandler)
-    httpd.serve_forever()
-
+    try:
+        if os.path.exists('json_data.json'):
+            parsedthink = json.load(open('json_data.json'))
+        httpd = HTTPServer(('', 80), SimpleHTTPRequestHandler)
+        httpd.serve_forever()
+    finally:
+        with open('json_data.json', 'w') as outfile:
+            json.dump(parsedthink, outfile)
+        print("Exiting!")
