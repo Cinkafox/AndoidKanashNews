@@ -60,7 +60,7 @@ namespace KanashNews
                         {
                             nws = news[i];
                             Log.Info("Load", Convert.ToString(nws.label) + " " + i);
-                            append(prepare(Convert.ToString(nws.label), Convert.ToString(nws.img)));
+                            append(prepare(Convert.ToString(nws.label), Convert.ToString(nws.img), Convert.ToString(nws.text)));
                             i++;
                             try
                             {
@@ -89,10 +89,14 @@ namespace KanashNews
         {
             News.Children.Add(stack);
         }
+        private async void Binw(String label,String text,String img)
+        {
+            await Navigation.PushAsync(new News(label,text,img));
 
-      
+        }
+
         //Метод возращающий готовый StackLayout, делает умные вещи
-        public StackLayout prepare(String text,String srcimg)
+        public StackLayout prepare(String text,String srcimg,String txt)
         {
             StackLayout stack = new StackLayout();
             stack.BackgroundColor = Color.LightCoral;
@@ -113,6 +117,10 @@ namespace KanashNews
             stack.Children.Add(frame);
             stack.Children.Add(image);
 
+            TapGestureRecognizer t = new TapGestureRecognizer();
+            t.Tapped += (s, e) => Binw(text,txt, srcimg);
+            stack.GestureRecognizers.Add(t);
+
             return stack;
         }
 
@@ -129,5 +137,6 @@ namespace KanashNews
                 GetAndpush(URL + pl, false);
             }
         }
+      
     }
 }
